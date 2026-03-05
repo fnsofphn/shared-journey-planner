@@ -17,15 +17,14 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Dashboard", icon: LayoutDashboard, path: "/" },
-  { label: "Calendar", icon: CalendarDays, path: "/calendar" },
-  { label: "Activities", icon: ListTodo, path: "/activities" },
-  { label: "Finance", icon: Wallet, path: "/finance" },
-  { label: "Notes", icon: StickyNote, path: "/notes" },
-  { label: "Album", icon: Image, path: "/album" },
-  { label: "Content", icon: BookOpen, path: "/content" },
- 
-  { label: "Contracts", icon: FileText, path: "/contracts" },
+  { label: "Trang chủ", icon: LayoutDashboard, path: "/" },
+  { label: "Lịch chung", icon: CalendarDays, path: "/calendar" },
+  { label: "Hoạt động", icon: ListTodo, path: "/activities" },
+  { label: "Tài chính", icon: Wallet, path: "/finance" },
+  { label: "Ghi chú", icon: StickyNote, path: "/notes" },
+  { label: "Album ảnh", icon: Image, path: "/album" },
+  { label: "Nội dung", icon: BookOpen, path: "/content" },
+  { label: "Thỏa thuận", icon: FileText, path: "/contracts" },
 ];
 
 export default function AppLayout({ children }: { children: ReactNode }) {
@@ -34,7 +33,8 @@ export default function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex bg-background">
-      {/* Desktop Sidebar */}
+
+      {/* Sidebar Desktop */}
       <aside
         className={cn(
           "hidden md:flex flex-col border-r border-border bg-sidebar transition-all duration-300 sticky top-0 h-screen",
@@ -42,19 +42,27 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         )}
       >
         <div className="flex items-center gap-2 p-4 border-b border-sidebar-border">
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-1.5 rounded-lg hover:bg-sidebar-accent transition-colors">
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-1.5 rounded-lg hover:bg-sidebar-accent transition-colors"
+          >
             <Menu className="h-5 w-5 text-sidebar-foreground" />
           </button>
+
           {sidebarOpen && (
             <div className="flex items-center gap-1.5">
               <Heart className="h-5 w-5 text-primary fill-primary" />
-              <span className="font-display font-semibold text-lg text-sidebar-foreground">OurLife</span>
+              <span className="font-display font-semibold text-lg text-sidebar-foreground">
+                Hành Trình Của Chúng Ta
+              </span>
             </div>
           )}
         </div>
+
         <nav className="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
             const active = location.pathname === item.path;
+
             return (
               <Link
                 key={item.path}
@@ -74,7 +82,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         </nav>
       </aside>
 
-      {/* Main Content */}
+      {/* Nội dung chính */}
       <main className="flex-1 flex flex-col min-h-screen pb-20 md:pb-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -90,11 +98,12 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         </AnimatePresence>
       </main>
 
-      {/* Mobile Bottom Nav */}
+      {/* Menu dưới Mobile */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-md border-t border-border z-50">
         <div className="flex justify-around items-center py-1.5">
           {navItems.slice(0, 5).map((item) => {
             const active = location.pathname === item.path;
+
             return (
               <Link
                 key={item.path}
@@ -109,18 +118,22 @@ export default function AppLayout({ children }: { children: ReactNode }) {
               </Link>
             );
           })}
+
           <Link
             to="/album"
             className={cn(
               "flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-xl text-xs transition-colors",
-              ["/album", "/content", "/contracts"].includes(location.pathname) ? "text-primary" : "text-muted-foreground"
+              ["/album", "/content", "/contracts"].includes(location.pathname)
+                ? "text-primary"
+                : "text-muted-foreground"
             )}
           >
             <BookOpen className="h-5 w-5" />
-            <span>More</span>
+            <span>Thêm</span>
           </Link>
         </div>
       </nav>
+
     </div>
   );
 }
