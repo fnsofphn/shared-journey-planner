@@ -24,7 +24,10 @@ const navItems = [
   { label: "Notes", icon: StickyNote, path: "/notes" },
   { label: "Album", icon: Image, path: "/album" },
   { label: "Content", icon: BookOpen, path: "/content" },
-  { label: "Contracts", icon: FileText, path: "/contracts" },
+ 
+  { label: "Love Counter", icon: Heart, path: "/love-counter" },
+  { label: "Timeline", icon: Clock, path: "/timeline" }
+   { label: "Contracts", icon: FileText, path: "/contracts" },
 ];
 
 export default function AppLayout({ children }: { children: ReactNode }) {
