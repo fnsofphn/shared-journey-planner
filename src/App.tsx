@@ -13,8 +13,7 @@ import Album from "./pages/Album";
 import Content from "./pages/Content";
 import Contracts from "./pages/Contracts";
 import NotFound from "./pages/NotFound";
-import LoveCounter from "./pages/LoveCounter";
-import LoveTimeline from "./pages/LoveTimeline";
+
 
 const queryClient = new QueryClient();
 
@@ -35,8 +34,7 @@ const App = () => (
             <Route path="/content" element={<Content />} />
             <Route path="/contracts" element={<Contracts />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/love-counter" element={<LoveCounter />} />
-<Route path="/timeline" element={<LoveTimeline />} />
+            
           </Routes>
         </AppLayout>
       </BrowserRouter>
